@@ -33,8 +33,15 @@ public class StudentView { //界面
                     findAllStudent();
                     break;
                 case 0:
-                    System.out.println("退出程序");
-                    return;
+                    System.out.println("请您确认是否退出程序?");
+                    System.out.println("按5取消 / 按9确认");
+                    int key = sc.nextInt();
+                    if (key == 9) {
+                        System.out.println("-----您已退出程序-----");
+                        return;
+                    }else if (key == 5){
+                        break;
+                    }
             }
         }
     }
@@ -51,7 +58,7 @@ public class StudentView { //界面
         System.out.println("请输入学生分数:");
         int score = sc.nextInt();
         //将学生信息封装到Student对象当中
-        Student student = new Student(name, sid, sex, age, score);
+        Student student = new Student(name, sex, sid, age, score);
         //将封装好的Student对象放到students数组中
         students[count] = student;
         count++;
@@ -75,7 +82,7 @@ public class StudentView { //界面
         int age = sc.nextInt();
         System.out.println("请输入学生分数:");
         int score = sc.nextInt();
-        Student student = new Student(name, sid, sex, age, score);
+        Student student = new Student(name, sex, sid, age, score);
         students[updateIndex] = student;
         System.out.println("修改完成!");
     }
@@ -115,12 +122,12 @@ public class StudentView { //界面
             }
         }
         if (count == 0) {
-            System.out.println("***系统还未录入学生信息***");
-            System.out.println("**请先录入,再查询!**");
+            System.out.println("---系统还未录入学生信息---");
+            System.out.println("--请先录入,再查询!--");
         } else {
             System.out.println("---[已录入学生信息]---");
             for (int i = 0; i < count; i++) {
-                System.out.println("学号:" + students[i].getSid() + " 姓名:" + students[i].getName() + " 性别:" + students[i].getSex() + " 年龄:" + students[i].getAge() + " 分数:" + students[i].getScore());
+                students[i].display();
             }
         }
     }
