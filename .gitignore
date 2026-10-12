@@ -1,16 +1,17 @@
-# Compiled class file
+# ============ IntelliJ IDEA ============
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+.kotlin
+*.iml
+
+# ============ Compiled class file ============
 *.class
 
-# Log file
+# ============ Log file ============
 *.log
 
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
+# ============ Package Files ============
 *.jar
 *.war
 *.nar
@@ -19,6 +20,37 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# ============ BlueJ files ============
+*.ctxt
+
+# ============ Mobile Tools for Java (J2ME) ============
+.mtj.tmp/
+
+# ============ Eclipse ============
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+# ============ NetBeans ============
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# ============ VS Code ============
+.vscode/
+
+# ============ Mac OS ============
+.DS_Store
+
+# ============ virtual machine crash logs ============
 hs_err_pid*
 replay_pid*

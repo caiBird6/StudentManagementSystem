@@ -1,5 +1,6 @@
 package Demo;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class StudentView { //界面
@@ -57,6 +58,11 @@ public class StudentView { //界面
         int age = sc.nextInt();
         System.out.println("请输入学生分数:");
         int score = sc.nextInt();
+        //重复添加判断
+        if (ArrayUtils.findIndexById(students,sid,count) != -1){
+            System.out.println("**该学号已存在!**");
+            return;
+        }
         //将学生信息封装到Student对象当中
         Student student = new Student(name, sex, sid, age, score);
         //将封装好的Student对象放到students数组中
@@ -112,19 +118,11 @@ public class StudentView { //界面
     }
 
     private void findAllStudent() {
-        for (int i = 0; i < count - 1; i++) {
-            for (int j = 0; j < count - 1 - i; j++) {
-                if (students[j].getSid() > students[j + 1].getSid()) {
-                    Student temp = students[j];
-                    students[j] = students[j + 1];
-                    students[j + 1] = temp;
-                }
-            }
-        }
         if (count == 0) {
             System.out.println("---系统还未录入学生信息---");
             System.out.println("--请先录入,再查询!--");
         } else {
+            Arrays.sort(students,0,count);
             System.out.println("---[已录入学生信息]---");
             for (int i = 0; i < count; i++) {
                 students[i].display();
