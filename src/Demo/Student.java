@@ -1,6 +1,6 @@
 package Demo;
 
-public class Student extends Person implements Comparable<Student>{
+public class Student extends Person {
     private int sid;   //学号
     private int score;
 
@@ -25,13 +25,9 @@ public class Student extends Person implements Comparable<Student>{
         setScore(score);
         this.sid = sid;
     }
+
     @Override
-    public void display(){
-        System.out.println("学号:"+getSid()+" 姓名:"+getName()+" 性别:"+
-                getSex()+" 年龄:"+getAge()+" 分数:"+getScore());
-    }
-    @Override
-    public int compareTo(Student o){
-        return this.sid-o.sid;
+    public String toString(){
+        return "学号: "+getSid()+" 姓名: "+getName()+" 性别: "+getSex()+" 年龄: "+getAge()+" 分数: "+getScore();
     }
 }

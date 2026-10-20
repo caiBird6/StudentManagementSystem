@@ -1,6 +1,6 @@
 package Demo;
 
-public abstract class Person {
+public class Person {
     private String name;
     private String sex;   //性别
     private int age;
@@ -37,5 +37,4 @@ public abstract class Person {
         this.sex = sex;
     }
 
-    public abstract void display();
 }

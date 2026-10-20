@@ -1,17 +1,18 @@
 package Demo;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Scanner;
 
-public class StudentView { //界面
+public class StudentView {
     Scanner sc = new Scanner(System.in);
-    Student[] students = new Student[50];
-    //定义一个变量,记录数组对象,用于遍历,避免空指针
-    int count = 0;
+    HashMap<Integer, Student> studentHashMap = new HashMap<>();
+
     //start方法用于展示界面以及调用对应功能
     public void start() {
         while (true) {
-            System.out.println("========学生信息管理系统v1.0========");
+            System.out.println("========学生信息管理系统v3.0========");
             System.out.println("1.添加学生信息");
             System.out.println("2.修改学生信息");
             System.out.println("3.删除学生信息");
@@ -40,7 +41,7 @@ public class StudentView { //界面
                     if (key == 9) {
                         System.out.println("-----您已退出程序-----");
                         return;
-                    }else if (key == 5){
+                    } else if (key == 5) {
                         break;
                     }
             }
@@ -59,27 +60,20 @@ public class StudentView { //界面
         System.out.println("请输入学生分数:");
         int score = sc.nextInt();
         //重复添加判断
-        if (ArrayUtils.findIndexById(students,sid,count) != -1){
+        if (studentHashMap.containsKey(sid)) {
             System.out.println("**该学号已存在!**");
             return;
         }
         //将学生信息封装到Student对象当中
         Student student = new Student(name, sex, sid, age, score);
         //将封装好的Student对象放到students数组中
-        students[count] = student;
-        count++;
+        studentHashMap.put(sid, student);
         System.out.println("添加完成!");
     }
 
     private void updateStudent() {
         System.out.println("请选择要修改的学生学号");
         int sid = sc.nextInt();
-        //根据id查询对应的学生在数组中的索引位置
-        int updateIndex = ArrayUtils.findIndexById(students, sid, count);
-        if (updateIndex == -1){
-            System.out.println("该学生不存在");
-            return;
-        }
         System.out.println("请输入学生姓名:");
         String name = sc.next();
         System.out.println("请输入学生性别:");
@@ -88,45 +82,36 @@ public class StudentView { //界面
         int age = sc.nextInt();
         System.out.println("请输入学生分数:");
         int score = sc.nextInt();
+        //构建新学生对象
         Student student = new Student(name, sex, sid, age, score);
-        students[updateIndex] = student;
-        System.out.println("修改完成!");
+        if (studentHashMap.containsKey(sid)) {
+            studentHashMap.put(sid, student);
+            System.out.println("修改完成!");
+        } else {
+            System.out.println("该学号不存在,修改失败");
+        }
     }
 
     private void deleteStudent() {
         System.out.println("请输入需要删除学生学号:");
         int sid = sc.nextInt();
-        int removeIndex = ArrayUtils.findIndexById(students, sid, count);
-        if (removeIndex == -1){
-            System.out.println("该学生不存在!");
-            return;
+        if (studentHashMap.containsKey(sid)) {
+            studentHashMap.remove(sid);
+            System.out.println("删除完成!");
+        } else {
+            System.out.println("该学号不存在,删除失败");
         }
-        //定义新数组,存老数组执行删除后剩下的元素
-        Student[] newstudents = new Student[count - 1];
-        //复制被删除元素前面一部分
-        for (int i = 0; i < removeIndex; i++) {
-            newstudents[i] = students[i];
-        }
-        //复制被删除元素后面一部分
-        for (int i = removeIndex; i < count - 1; i++) {
-            newstudents[i] = students[i + 1];
-        }
-
-        students = newstudents;
-        count--;
-        System.out.println("删除完成!");
     }
 
     private void findAllStudent() {
-        if (count == 0) {
+        if (studentHashMap.isEmpty()) {
             System.out.println("---系统还未录入学生信息---");
             System.out.println("--请先录入,再查询!--");
         } else {
-            Arrays.sort(students,0,count);
+            ArrayList<Student> list = new ArrayList<>(studentHashMap.values());
+            Collections.sort(list, (s1, s2) -> s1.getSid() - s2.getSid());
             System.out.println("---[已录入学生信息]---");
-            for (int i = 0; i < count; i++) {
-                students[i].display();
-            }
+            list.forEach(s -> System.out.println(s));
         }
     }
 }
