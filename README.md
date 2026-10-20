@@ -39,7 +39,7 @@ src/Demo/
 | **v3.0** | 学生存储由 `ArrayList` 改为 `HashMap<Integer, Student>`，以学号为键，查重/查找/删除均为 O(1)；移除 `ArrayUtils` 工具类；`Person` 去掉抽象方法与 `display()`，统一使用 `toString()` 输出 |
 | v2.0 | 修复学号重复添加问题；手写冒泡排序改为 `Arrays.sort` + 实现 `Comparable` |
 | v1.5 | 新增 `Person` 抽象类，`Student` 继承并用抽象方法 + 多态实现信息展示；完成 CRUD 基础功能 |
-| v1.0 | 面向对象版本基础增删查 |
+| v1.0 | 面向对象版本基础增删查（定长数组 `Student[50]` + `count` 计数器） |
 
 ## ⚠️ 已知待改进
 
