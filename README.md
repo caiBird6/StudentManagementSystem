@@ -9,6 +9,7 @@ Java 面向对象版本 · 学生管理系统 · 控制台实现增删查改
 v3.0 起学生数据改用 `HashMap<Integer, Student>` 存储，**以学号作为键**，
 查重、查找、修改、删除均通过哈希表直接定位，查找复杂度由 O(n) 降为 O(1)。
 查看全部学生时取出 `values()` 转成 `ArrayList`，用 Lambda 表达式按学号升序排序后输出。
+v3.1 在此基础上补充了「按学号查询单个学生」功能。
 
 ## 📂 文件结构
 
@@ -31,12 +32,14 @@ src/Demo/
 - 按学号修改学生信息（学号不存在会提示修改失败）
 - 按学号删除学生信息
 - 查看全部学生信息（按学号升序排列）
+- 按学号查询单个学生信息（v3.1 新增）
 
 ## 📝 版本记录
 
 | 版本 | 内容 |
 |---|---|
-| **v3.0** | 学生存储由 `ArrayList` 改为 `HashMap<Integer, Student>`，以学号为键，查重/查找/删除均为 O(1)；移除 `ArrayUtils` 工具类；`Person` 去掉抽象方法与 `display()`，统一使用 `toString()` 输出 |
+| **v3.1** | 新增「按学号查询」功能（`findAllById`）；方法命名区分 `findAllStudents`（查全部）与 `findAllById`（查单个）；修改/删除的失败提示文案统一 |
+| v3.0 | 学生存储由 `ArrayList` 改为 `HashMap<Integer, Student>`，以学号为键，查重/查找/删除均为 O(1)；移除 `ArrayUtils` 工具类；`Person` 去掉抽象方法与 `display()`，统一使用 `toString()` 输出 |
 | v2.0 | 修复学号重复添加问题；手写冒泡排序改为 `Arrays.sort` + 实现 `Comparable` |
 | v1.5 | 新增 `Person` 抽象类，`Student` 继承并用抽象方法 + 多态实现信息展示；完成 CRUD 基础功能 |
 | v1.0 | 面向对象版本基础增删查（定长数组 `Student[50]` + `count` 计数器） |
@@ -44,5 +47,4 @@ src/Demo/
 ## ⚠️ 已知待改进
 
 - 数据仅存于内存，程序退出即丢失，尚未接入数据库
-- 暂无独立「按学号查找」功能（菜单中未提供，只能查看全部）
 - 排序依赖 Lambda 比较器，尚未让 `Student` 实现 `Comparable` 接口

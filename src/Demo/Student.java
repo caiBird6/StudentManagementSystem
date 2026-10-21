@@ -28,7 +28,7 @@ public class Student extends Person {
 
     @Override
     public String toString(){
-        return "学号:"+getSid()+"姓名:"+ getName()+" 性别:"+
+        return "学号:"+getSid()+" 姓名:"+ getName()+" 性别:"+
                 getSex()+" 年龄:"+getAge()+
                 " 分数:"+getScore();
     }
