@@ -54,3 +54,6 @@ bin/
 # ============ virtual machine crash logs ============
 hs_err_pid*
 replay_pid*
+
+# ============ 程序运行时产生的数据文件 ============
+students.txt

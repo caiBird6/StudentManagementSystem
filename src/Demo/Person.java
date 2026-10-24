@@ -4,12 +4,13 @@ public class Person {
     private String name;
     private String sex;   //性别
     private int age;
+
     public Person() {
     }
 
     public Person(String name, String sex, int age) {
         this.name = name;
-        this.sex = sex;
+        setSex(sex);
         setAge(age);
     }
 
@@ -34,7 +35,7 @@ public class Person {
     }
 
     public void setSex(String sex) {
+
         this.sex = sex;
     }
-
 }
